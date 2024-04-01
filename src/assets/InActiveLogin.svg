@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 403 404" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(1,0,0,1,-272,-96)">
+        <g id="InActiveLogin">
+            <circle cx="473.683" cy="297.938" r="201.073" style="fill:rgb(199,199,199);"/>
+            <g transform="matrix(0.871077,0,0,0.871077,-518.434,-146.7)">
+                <path d="M1138.95,741.279C1078.67,741.279 1023.76,718.124 982.632,680.232C1007.07,617.774 1067.88,573.488 1138.95,573.488C1210.03,573.488 1270.84,617.774 1295.28,680.232C1254.14,718.124 1199.23,741.279 1138.95,741.279Z" style="fill:rgb(132,132,132);"/>
+            </g>
+            <g transform="matrix(0.697152,0,0,0.697152,-158.481,104.816)">
+                <circle cx="906.781" cy="231.363" r="101.135" style="fill:rgb(132,132,132);"/>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,25 @@
+<div class="authpage">
+
+  <div class="formsection">
+    <button class="formselection" (click)="SwitchForm()">Go {{status}}</button>
+    <form class="form" *ngIf="Loginform" [formGroup]="loginform" (ngSubmit)="Login()">
+      <p class="testheader">this is currently for testing, input any credentials to Login</p>
+      <h3 class="username">Username</h3>
+      <input class="forminput"  type="text" placeholder="Enter Username" [formControl]="this.loginform.controls.username" />
+      <h3 class="password">Password</h3>
+      <input class="forminput" type="text" placeholder="Enter Password" [formControl]="this.loginform.controls.password" />
+      <input class="submit" type="submit" [disabled]="!loginform.valid" value="Login" />
+    </form>
+
+    <form class="form" *ngIf="Registerform" [formGroup]="registerformm" (ngSubmit)="Register()">
+      <h3 class="username">Username</h3>
+      <input class="forminput" type="text" placeholder="Enter Username" />
+      <h3 class="username">Password</h3>
+      <input class="forminput" type="text" placeholder="Enter Password" />
+      <h3 class="username">Email</h3>
+      <input class="forminput" type="text" placeholder="Enter Email..." />
+      <input class="submit" type="submit" value="Register" />
+    </form>
+  </div>
+
+</div>
