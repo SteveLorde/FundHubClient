@@ -23,6 +23,7 @@ import {FallbackimageDirective} from "../../Utilities/FallBackImage/fallbackimag
 export class ProjectViewComponent {
   public projectid: string | null = ""
   public project : Project = {
+    status: false,
     donations: [],
     email: "",
     imagesnames: [],

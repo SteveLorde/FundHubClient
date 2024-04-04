@@ -26,7 +26,7 @@ export class FundRequestFormComponent {
   imagestoupload : File[] = []
   imagesurls : string[] = []
   categories: Category[] = []
-  @Input() userid : string
+  @Input() userid : string = ""
 
   constructor(private auth: AuthenticationService, private backend: BackendService, private router : Router) {
   }

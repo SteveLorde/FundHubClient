@@ -17,4 +17,5 @@ export interface Project {
   userId : string
   user : User
   donations : Donation[]
+  status : boolean
 }

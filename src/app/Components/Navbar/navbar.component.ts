@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
   authstatus : string = ""
   isLoggedIn: boolean = false
   IsMobileMenuOpen: boolean = false
-  @ViewChild('MobileMenu') mobileMenuElement : ElementRef
+  @ViewChild('MobileMenu') mobileMenuElement : ElementRef = {} as ElementRef
 
   constructor(private router: Router, private authservice : AuthenticationService) {
 

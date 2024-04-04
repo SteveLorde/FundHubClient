@@ -25,6 +25,7 @@ export class UserPanelComponent implements OnInit{
   userownsproject : boolean = false;
 
   public project : Project = {
+    status: false,
     email: "", imagesnames: [], userId: "", user: {} as User,
     category: {id: "", name: ""},
     currentfund: 0, description: "", id: "", subtitle: "", title: "", totalfundrequired: 0, donations: []}

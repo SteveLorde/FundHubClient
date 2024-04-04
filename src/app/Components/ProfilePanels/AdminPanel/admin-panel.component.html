@@ -1,11 +1,71 @@
 <p>admin-panel works!</p>
 
 
-<div>
-  <button>
-
-  </button>
-
-  <app-fund-request-form [hidden]={projectrequestformvisible}></app-fund-request-form>
-
+<div class="flex flex-row">
+  <li><button>Profile Info</button></li>
+  <li><button>Validate Projects</button></li>
+  <li><button>Validate Donations</button></li>
 </div>
+
+<section>
+  <div>
+
+  </div>
+
+  <div>
+    <!----ALL PROJECTS TABLE---->
+    <div>
+      <table class="border-2 border-gray-600">
+        <tr>
+          <th>Number</th>
+          <th>Title</th>
+          <th>Current Donation</th>
+          <th>Donation Needed</th>
+          <th>Added on</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+        @for (project of allProjects; track project.id) {
+          <tr (click)="">
+            <td>1</td>
+            <td>{{project.title}}</td>
+            <td>{{project.currentfund}}</td>
+            <td>{{project.totalfundrequired}}</td>
+            <td>empty for now</td>
+            <td>{{project.status}}</td>
+            <td>
+              <button>View</button>
+              <button (click)="DeleteProject(project.id)">Delete</button>
+            </td>
+          </tr>
+        }
+      </table>
+    </div>
+    <!----PROJECT VIEW PANEL----->
+    @if(selectedProject().id === "") {
+
+    }
+    <div>
+
+
+      @if(selectedProject().status === false) {
+        <div class="flex flex-row gap-4 items-center">
+          <button>Accept</button>
+          <button>Deny</button>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div>
+    <!----ALL Donations TABLE---->
+    <div>
+
+    </div>
+    <!----Donation VIEW PANEL----->
+    <div>
+
+    </div>
+  </div>
+
+</section>
