@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Project} from "../../Data/Models/Project";
 import {BackendService} from "../../Services/Backend/backend.service";
+import {ProjectsService} from "../../Services/Projects/projects.service";
 import {CurrencyPipe, NgForOf, NgSwitch, NgSwitchCase} from "@angular/common";
 import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {environment} from "../../../environments/environment";
@@ -26,7 +27,7 @@ export class ProjectsPageComponent implements OnInit{
   public projects : Project[] = []
   selectedcategoryid : string = ""
 
-  constructor(private backend : BackendService, private router : Router) {
+  constructor(private projectsService : ProjectsService, private router : Router) {
 
   }
 
@@ -35,7 +36,7 @@ export class ProjectsPageComponent implements OnInit{
   }
 
   GetProjects() {
-    this.backend.GetProjects().subscribe( (res : Project[]) => this.projects = res)
+    this.projectsService.GetProjects().subscribe( (res : Project[]) => this.projects = res)
   }
 
   ViewProject(projectid : string) {

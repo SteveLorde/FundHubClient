@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {BackendService} from "../../Services/Backend/backend.service";
 import {AuthenticationService} from "../../Services/Authentication/authentication.service";
 import {UserPanelComponent} from "../../Components/ProfilePanels/UserPanel/user-panel.component";
 import {NgIf} from "@angular/common";
@@ -23,7 +22,7 @@ export class ProfilePageComponent implements OnInit{
   showadminpanel : boolean = false
   user = {} as User
 
-  constructor(private router : Router,private backend: BackendService, private auth: AuthenticationService) {
+  constructor(private router : Router, private authService: AuthenticationService) {
 
   }
 
@@ -32,13 +31,13 @@ export class ProfilePageComponent implements OnInit{
   }
 
   Logout() {
-    let check : boolean = this.auth.Logout()
+    let check : boolean = this.authService.Logout()
     if (check) {
       this.router.navigate(['/'])
     }
   }
    GetUserType() {
-    this.auth.GetActiveUser().subscribe( userdatares => {
+    this.authService.GetActiveUser().subscribe( userdatares => {
       this.user = userdatares
       if (this.user.usertype == "user") {
         this.showadminpanel = false

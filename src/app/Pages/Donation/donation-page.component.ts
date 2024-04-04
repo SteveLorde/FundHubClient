@@ -3,7 +3,7 @@ import {Project} from "../../Data/Models/Project";
 import {selectedproject} from "../../Services/GlobalMemoryStorage";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {BackendService} from "../../Services/Backend/backend.service";
+import {ProjectsService} from "../../Services/Projects/projects.service";
 import {SocialMedia} from "../../Data/Models/SocialMedia";
 import {User} from "../../Data/Models/User";
 
@@ -20,6 +20,7 @@ import {User} from "../../Data/Models/User";
 export class DonationPageComponent {
   public projectid : string | null = ""
   public project = signal<Project>({
+    status: false,
     currentfund: 0,
      category: {id: "", name: ""},
     subtitle: "", donations: [],
@@ -29,7 +30,7 @@ export class DonationPageComponent {
   public donationreceiptnumber : string = ''
   public donationamountview : number = 0
 
-  constructor(private router : Router,private route: ActivatedRoute, private backend: BackendService) {
+  constructor(private router : Router,private route: ActivatedRoute, private projectsService: ProjectsService) {
 
   }
 
@@ -50,7 +51,7 @@ export class DonationPageComponent {
   })
 
   GetSelectedProject(projectid : string) {
-    this.backend.GetProject(projectid).subscribe( (projectres : Project) => this.project.set(projectres))
+    this.projectsService.GetProject(projectid).subscribe( (projectres : Project) => this.project.set(projectres))
   }
 
   SubmitDonation() {

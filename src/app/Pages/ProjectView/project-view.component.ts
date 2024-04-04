@@ -2,7 +2,7 @@ import {Component, signal, WritableSignal} from '@angular/core';
 import {Project} from "../../Data/Models/Project";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {User} from "../../Data/Models/User";
-import {BackendService} from "../../Services/Backend/backend.service";
+import {ProjectsService} from "../../Services/Projects/projects.service";
 import {NgForOf, NgSwitch, NgSwitchCase} from "@angular/common";
 import {environment} from "../../../environments/environment";
 import {FallbackimageDirective} from "../../Utilities/FallBackImage/fallbackimage.directive";
@@ -30,7 +30,7 @@ export class ProjectViewComponent {
     userId: "",
     category: {id: "", name: ""}, currentfund: 0, description: "", id: "", user: {} as User ,subtitle: "", title: "", totalfundrequired: 0}
 
-  constructor(private router : Router,private route: ActivatedRoute, private backend: BackendService) {
+  constructor(private router : Router,private route: ActivatedRoute, private projectsService: ProjectsService) {
 
   }
 
@@ -47,7 +47,7 @@ export class ProjectViewComponent {
 
 
   GetProject(projectid : string) {
-    this.backend.GetProject(projectid).subscribe( (projectres : Project) => this.project = projectres)
+    this.projectsService.GetProject(projectid).subscribe( (projectres : Project) => this.project = projectres)
   }
 
   GoDonate() {

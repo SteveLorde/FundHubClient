@@ -22,7 +22,7 @@ export class LoginRegisterPageComponent {
   public Registerform : boolean = false
   public status : string = "Register"
 
-  constructor(private authservice : AuthenticationService, private router : Router) {
+  constructor(private authService : AuthenticationService, private router : Router) {
   }
 
   loginform = new FormGroup({
@@ -51,7 +51,7 @@ export class LoginRegisterPageComponent {
 
    async Login() {
       let loginrequst = {username: this.loginform.get('username').value, password: this.loginform.get('password').value}
-      this.authservice.Login(loginrequst).subscribe(res => {
+      this.authService.Login(loginrequst).subscribe(res => {
         if (res) {
           this.router.navigate(["profile"])
         }
@@ -69,7 +69,7 @@ export class LoginRegisterPageComponent {
       password: this.registerformm.controls.password.value,
       email: this.registerformm.controls.email.value
     }
-    this.authservice.Register(registereq).subscribe(res => {
+    this.authService.Register(registereq).subscribe(res => {
       if (res) {
         this.router.navigate(["profile"])
       }

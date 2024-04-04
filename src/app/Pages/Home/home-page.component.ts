@@ -26,7 +26,7 @@ export class HomePageComponent implements OnInit{
   @ViewChildren('newsimage') imageElements: QueryList<ElementRef>;
   fallbackImageUrl: string = 'assets/nullimage.png'
 
-  constructor(private backend: BackendService) {
+  constructor(private backendService: BackendService) {
     this.GetNews()
   }
 
@@ -35,7 +35,7 @@ export class HomePageComponent implements OnInit{
   }
 
   async GetNews() {
-    this.allnews = await this.backend.GetNews()
+    this.allnews = await this.backendService.GetNews()
   }
 
 

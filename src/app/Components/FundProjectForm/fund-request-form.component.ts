@@ -4,7 +4,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {Project} from "../../Data/Models/Project";
 import {User} from "../../Data/Models/User";
 import {AuthenticationService} from "../../Services/Authentication/authentication.service";
-import {BackendService} from "../../Services/Backend/backend.service";
+import {ProjectsService} from "../../Services/Projects/projects.service";
 import {Category} from "../../Data/Models/Category";
 import {ProjectRequest} from "../../Data/Models/ProjectRequest";
 import {Router} from "@angular/router";
@@ -28,7 +28,7 @@ export class FundRequestFormComponent {
   categories: Category[] = []
   @Input() userid : string = ""
 
-  constructor(private auth: AuthenticationService, private backend: BackendService, private router : Router) {
+  constructor(private authService: AuthenticationService, private projectsService: ProjectsService, private router : Router) {
   }
 
   newprojectform = new FormGroup({
@@ -61,7 +61,7 @@ export class FundRequestFormComponent {
         instagram: this.newprojectform.controls.instagram.value,
         subtitle: this.newprojectform.controls.subtitle.value
       }
-      let projectid = await this.backend.AddProjectRequest(newproject)
+      let projectid = await this.projectsService.AddProjectRequest(newproject)
       if (projectid != null && undefined && "") {
         await this.router.navigate(['/viewproject', projectid])
       }
@@ -75,7 +75,7 @@ export class FundRequestFormComponent {
   }
 
   CheckLogin() {
-    if (!this.auth.isloggedin) {
+    if (!this.authService.isloggedin) {
       Swal.fire("Please Login")
       return false
     }
