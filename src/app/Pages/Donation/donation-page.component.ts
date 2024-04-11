@@ -1,11 +1,15 @@
-import {Component, signal} from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import {Project} from "../../Data/Models/Project";
 import {selectedproject} from "../../Services/GlobalMemoryStorage";
-import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProjectsService} from "../../Services/Projects/projects.service";
 import {SocialMedia} from "../../Data/Models/SocialMedia";
 import {User} from "../../Data/Models/User";
+import {Donation} from "../../Data/Models/Donation";
+import {AuthenticationService} from "../../Services/Authentication/authentication.service";
+import {DonationsService} from "../../Services/Donations/donations.service";
+import Swal from "sweetalert2";
 
 
 @Component({
@@ -17,9 +21,9 @@ import {User} from "../../Data/Models/User";
   templateUrl: './donation-page.component.html',
   styleUrl: './donation-page.component.scss'
 })
-export class DonationPageComponent {
-  public projectid : string | null = ""
-  public project = signal<Project>({
+export class DonationPageComponent implements OnInit{
+  projectid : string | null = ""
+  project = signal<Project>({
     status: false,
     currentfund: 0,
      category: {id: "", name: ""},
@@ -27,10 +31,12 @@ export class DonationPageComponent {
     userId: "",
     totalfundrequired: 0,
     email: "", id: "", description: "", title: "",user : {} as User, imagesnames: []})
-  public donationreceiptnumber : string = ''
-  public donationamountview : number = 0
+  donationreceiptnumber : string = ''
+  donationamountview : number = 0
+  isLoggedIn : boolean = false
+  activeUser : User = {} as User
 
-  constructor(private router : Router,private route: ActivatedRoute, private projectsService: ProjectsService) {
+  constructor(private router : Router,private route: ActivatedRoute, private projectsService: ProjectsService, private donationService : DonationsService ,private authService : AuthenticationService) {
 
   }
 
@@ -38,16 +44,17 @@ export class DonationPageComponent {
     this.route.paramMap.subscribe(params => {
       this.projectid = params.get('id')
     })
-    if (this.projectid != null) {
-      this.donationreceiptnumber = this.GenerateDonationNumber()
+    if (this.projectid !== null) {
+      //this.donationreceiptnumber = this.GenerateDonationNumber()
       this.GetSelectedProject(this.projectid)
     }
-
+    this.authService.currentIsLoggedIn.subscribe(res => this.isLoggedIn = res)
+    this.authService.GetActiveUser().subscribe(res => this.activeUser = res)
   }
 
   donationform = new FormGroup({
-    paymenttype: new FormControl(''),
-    donationamount: new FormControl(''),
+    paymenttype: new FormControl('', Validators.required),
+    donationamount: new FormControl(0, Validators.required),
   })
 
   GetSelectedProject(projectid : string) {
@@ -55,10 +62,25 @@ export class DonationPageComponent {
   }
 
   SubmitDonation() {
-    //create log
-
+    if (this.isLoggedIn && this.activeUser !== null) {
+      let newDonation : Donation = {
+        donationamount: this.donationform.controls.donationamount.value,
+        id: "",
+        paymenttype: this.donationform.controls.paymenttype.value,
+        project: null,
+        projectid: this.project().id,
+        status: false,
+        user: null,
+        userid: this.activeUser.id
+      }
+      this.donationService.SubmitDonation(newDonation).subscribe(res => {})
+    }
+    else {
+      Swal.fire("Please Login")
+    }
   }
 
+  /* NOT USED ANYMORE, AS GUID IS GENERATED ON SERVER-SIDE
   GenerateDonationNumber() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     let result = '';
@@ -69,5 +91,7 @@ export class DonationPageComponent {
     }
     return result;
   }
+
+   */
 
 }

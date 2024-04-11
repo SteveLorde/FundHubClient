@@ -11,10 +11,12 @@
 
 .MobileNavbar {
   display: none;
+  transition: left 10s ease-in-out;
 }
 
-.MobileMenu {
-  transition: left 0.3s ease;
+.mobilemenu {
+  left: -1000px;
+  transition: left 0.4s ease-in-out;
 }
 
 .links {
@@ -30,6 +32,10 @@
   height: 20px;
   margin-right: 20px;
   cursor: pointer;
+}
+
+.logo:hover {
+
 }
 
 .logo:hover {

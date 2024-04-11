@@ -1,0 +1,41 @@
+<p>projectviewer works!</p>
+
+<div class="projectinfo flex flex-col min-h-[1000px] items-center p-4 gap-6 bg-gray-200 rounded-2xl ">
+
+  <div class="flex flex-col gap-2">
+    <button (click)="EditProject()">Edit Project</button>
+    <button (click)="SaveProject()">Save Project</button>
+  </div>
+
+
+  <!--Images Carousel -->
+  <img class="selectedimage" src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{project.imagesnames?.[0]}}" />
+  <div class="projectgallery">
+    <div  *ngFor="let image of project.imagesnames">
+      <img class="galleryimage"  src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{image}}" />
+    </div>
+  </div>
+
+
+  <div class="flex flex-col gap-9">
+    <h1 class="text-2xl font-bold">{{project.title}}</h1>
+    <div class="flex flex-row items-center justify-center gap-4">
+      <h2>Category: {{project.category.name}}</h2>
+      <div [ngSwitch]="project.category.name">
+        <img class="w-[20px] h-[20px]" *ngSwitchCase=" 'product' "  src="assets/ProductIcon.png"/>
+        <img class="w-[20px] h-[20px]"  *ngSwitchCase=" 'society' "  src="assets/SocietalProjectIcon.png"/>
+        <img class="w-[20px] h-[20px]"  *ngSwitchCase=" 'environment' "  src="assets/EnvironmentProject.png"/>
+      </div>
+    </div>
+
+    <p class="min-h-[250px]">{{project.description}}</p>
+
+    <div class="flex flex-row items-center">
+      <p>{{project.currentfund}}</p>
+      <p>out of</p>
+      <p>{{project.totalfundrequired}}</p>
+      <p>collected</p>
+    </div>
+
+  </div>
+</div>

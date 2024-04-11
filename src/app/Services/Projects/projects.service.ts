@@ -5,6 +5,8 @@ import axios from "axios";
 import {User} from "../../Data/Models/User";
 import {HttpClient} from "@angular/common/http";
 import {ProjectRequest} from "../../Data/Models/ProjectRequest";
+import {PaginatedProjects} from "../../Data/Models/PaginatedProjects";
+import {map} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,8 @@ export class ProjectsService {
 
   constructor(private http : HttpClient) { }
 
-  GetProjects() {
-    return this.http.get<Project[]>(environment.backendurl + `/Projects/GetProjects`)
+  GetProjects(pagenumber : number) {
+    return this.http.get<PaginatedProjects>(environment.backendurl + `/Projects/GetProjects/${pagenumber}`)
   }
 
   GetProject(projectid : string) {

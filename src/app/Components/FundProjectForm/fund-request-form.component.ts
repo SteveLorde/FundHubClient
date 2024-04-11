@@ -75,7 +75,7 @@ export class FundRequestFormComponent {
   }
 
   CheckLogin() {
-    if (!this.authService.isloggedin) {
+    if (!this.authService.isLoggedIn) {
       Swal.fire("Please Login")
       return false
     }

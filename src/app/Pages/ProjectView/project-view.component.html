@@ -1,6 +1,6 @@
 <div class="viewprojectpage">
 
-  <div class="projectinfo flex flex-col min-h-[1000px] items-center p-4 gap-6 bg-gray-200 rounded-2xl ">
+  <div class="projectinfo flex flex-col min-w-[500px] min-h-[1000px] items-center p-4 gap-6 bg-gray-200 rounded-2xl ">
     <!--Images Carousel -->
     <img class="selectedimage" src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{project.imagesnames?.[0]}}" />
     <div class="projectgallery">
@@ -23,10 +23,14 @@
 
       <p class="min-h-[250px]">{{project.description}}</p>
 
-      <div class="flex flex-row items-center">
-        <p>{{project.currentfund}}</p>
+      <div class="flex flex-row items-center gap-3">
+        @if (project.currentfund <= project.totalfundrequired) {
+          <p class="text-red-600 font-bold">{{project.currentfund}}</p>
+        } @else {
+          <p class="text-green-500 font-bold">{{project.currentfund}}</p>
+        }
         <p>out of</p>
-        <p>{{project.totalfundrequired}}</p>
+        <p class="font-bold">{{project.totalfundrequired}}</p>
         <p>collected</p>
       </div>
 
@@ -45,7 +49,6 @@
     <p>{{project.user.description}}</p>
     <h3 class="text-black text-center font-bold">contact info</h3>
     <p>Phone Number: {{project.user.phonenumber}}</p>
-
   </div>
 
 </div>

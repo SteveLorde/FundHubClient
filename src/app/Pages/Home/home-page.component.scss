@@ -13,6 +13,21 @@
   margin: 10px;
 }
 
+.Title {
+  animation: customFade 2s ease-in-out;
+}
+
+.Subtitle {
+  animation: customFade 3s ease-in-out;
+}
+
+.NewsArea {
+}
+
+.NewsCard {
+  animation: customFade 1s ease-in;
+}
+
 .headtitle {
   color: black;
   padding-left: 100px;
@@ -49,6 +64,7 @@
   font-family: Dubai, serif;
 }
 
+
 .newselement {
   padding: 10px;
   margin: 10px;
@@ -70,3 +86,4 @@
 .newsimage:hover {
   background-color: #e8e8e8;
 }
+

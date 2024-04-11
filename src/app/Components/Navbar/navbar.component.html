@@ -11,29 +11,26 @@
 </nav>
 
 <!-----Mobile Navbar----->
-<nav class="lg:hidden flex flex-row items-center justify-between p-4 gap-4">
+  <nav class="lg:hidden flex flex-row z-50 items-center justify-between p-4 gap-4">
+      <img #MobileMenu class="w-[40px] hover:cursor-pointer" src="assets/MobileMenuIcon.svg" (click)="OpenMobileMenu()" alt="mobilenavmenu"/>
+      <a class="" routerLink="/">
+        <img class="logo" src="assets/logo.png"  alt="homepagelink"/>
+      </a>
+      <a class="bg-green-500 rounded-[500px]" routerLink="/loginregister">
+        @if (isLoggedIn) {
+          <img class="w-[50px] hover:cursor-pointer" src="assets/ActiveLogin.svg" alt=""/>
+        } @else {
+          <img class="w-[50px] hover:cursor-pointer" src="assets/InActiveLogin.svg" alt=""/>
+        }
+      </a>
+  </nav>
 
-  <img #MobileMenu class="w-[40px] hover:cursor-pointer" src="assets/MobileMenuIcon.svg" (click)="OpenMobileMenu()" alt="mobilenavmenu"/>
-  <a class="" routerLink="/">
-    <img class="logo" src="assets/logo.png"  alt="homepagelink"/>
-  </a>
-  <a class="p-2 bg-green-500 rounded-[500px]" routerLink="/loginregister">
-    @if (isLoggedIn) {
-      <img class="w-[40px] hover:cursor-pointer" src="assets/ActiveLogin.svg" alt=""/>
-    } @else {
-      <img class="w-[40px] hover:cursor-pointer" src="assets/InActiveLogin.svg" alt=""/>
-    }
-  </a>
 
-</nav>
-
-@if (IsMobileMenuOpen) {
-  <nav #MobileMenu class="lg:hidden fixed w-[300px] z-50 h-full bg-green-500">
-    <ul class="flex flex-col items-center">
+  <nav #MobileMenu [style.left]="leftCSSProperty" class="mobilemenu lg:hidden absolute w-[200px] z-50 h-lvh bg-green-500">
+    <ul class="flex flex-col items-center gap-6">
       <li><a class="mb-2 p-2 border-b-2 border-gray-300 text-white font-semibold" routerLink="/">Home</a></li>
       <li><a class="mb-2 p-2 border-b-2 text-white font-semibold" routerLink="/projects">Projects</a></li>
     </ul>
   </nav>
-}
 
 

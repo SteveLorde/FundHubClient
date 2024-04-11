@@ -1,8 +1,8 @@
 <div class="projectspage h-[2500px]">
 
   <!---Categories Filter Buttons-->
-  <div class="flex flex-col flex-wrap items-center gap-3">
-    <h3 class="font-semibold text-gray-300">Filter By Category</h3>
+  <div class="flex flex-col flex-wrap items-center gap-2">
+    <h3 class="font-semibold text-gray-500">Filter By Category</h3>
     <div class="flex flex-row gap-6 items-center m-4">
       <img class="SelectCategoryIcon" (click)="FilterProjects('')" src="assets/AllCategory.svg" alt="" />
       <img class="SelectCategoryIcon" (click)="FilterProjects('4a858ba2-cc64-4752-973a-2b1acba5d78d')" src="assets/ProductIcon.svg" alt="" />
@@ -12,9 +12,9 @@
   </div>
 
   <!---Projects Grid--->
-  <div class="flex flex-col items-center lg:grid grid-cols-4 gap-12">
+  <div class="ProjectsGrid flex flex-col items-center lg:grid grid-cols-4 place-items-center place-content-center gap-12">
 
-    <div class="projectcard" *ngFor="let project of projects | projectsViewCategoryFilter: selectedcategoryid">
+    <div class="projectcard" *ngFor="let project of paginatedProjects | projectsViewCategoryFilter: selectedcategoryid">
       <img class="projectimage" src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{project.imagesnames?.[0]}}" />
 
       <div class="flex flex-row flex-wrap items-center justify-center gap-4">
@@ -26,10 +26,16 @@
         </div>
       </div>
 
-      <p class="font-semibold text-[20px] text-black">{{project.currentfund | currency : "EGP"}} / {{project.totalfundrequired | currency : "EGP"}}</p>
+      <p class="font-semibold text-[20px] text-gray-700">{{project.currentfund | currency : "EGP "}} / {{project.totalfundrequired | currency : "EGP "}}</p>
       <a class="viewbutton" (click)="ViewProject(project.id)">View</a>
     </div>
   </div>
+
+  <div class="flex flex-row gap-2" *ngFor="let number of GeneratePagesNumbers(totalPagesNumber)">
+      <button class="p-1 hover:bg-green-500" (click)="GetProjects(number)">{{number}}</button>
+  </div>
+
+
 
 
 </div>

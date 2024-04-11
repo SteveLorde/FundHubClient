@@ -63,8 +63,7 @@ export class LoginRegisterPageComponent {
 
 
   Register() {
-
-    let registereq = {
+    const registereq = {
       username: this.registerformm.controls.username.value,
       password: this.registerformm.controls.password.value,
       email: this.registerformm.controls.email.value

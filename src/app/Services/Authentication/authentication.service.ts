@@ -9,10 +9,12 @@ import {BehaviorSubject, firstValueFrom, map, Observable} from "rxjs";
 })
 export class AuthenticationService {
 
-  isloggedin = new BehaviorSubject(false)
-  authstatus = new BehaviorSubject("Login/Register")
-  currentAuthStatus = this.authstatus.asObservable()
-  currentIsLoggedIn = this.isloggedin.asObservable()
+  isLoggedIn = new BehaviorSubject(false)
+  authStatus = new BehaviorSubject("Login/Register")
+  //loggedUserData : User = {} as User
+  currentIsLoggedIn = this.isLoggedIn.asObservable()
+  currentAuthStatus = this.authStatus.asObservable()
+
 
   constructor(private http : HttpClient) {}
 
@@ -30,26 +32,39 @@ export class AuthenticationService {
     )
   }
 
+  AutoCheckLogin() {
+    return this.http.get(environment.backendurl + "/Authentication/CheckToken").pipe(
+      map( (boolres : boolean) => {
+        if (boolres) {
+          this.GetActiveUser().subscribe()
+          this.isLoggedIn.next(true)
+        }
+        else {
+          this.isLoggedIn.next(false)
+        }
+        })
+    )
+  }
+
   Logout() {
-    this.isloggedin.next(false)
+    this.isLoggedIn.next(false)
     localStorage.removeItem("usertoken")
-    this.authstatus.next("Login/Register")
+    this.authStatus.next("Login/Register")
     return true
   }
 
   Register(registerrequest : AuthRequest) {
     let registercheck : boolean
     return this.http.post<string>(environment.backendurl + '/Authentication/Register', registerrequest).pipe(
-      map( (token) => {
-        if (token !== null && token !== 'undefined') {
-          localStorage.setItem('usertoken', token)
+      map( (tokenres) => {
+        if (tokenres !== null) {
+          localStorage.setItem('usertoken', tokenres)
           registercheck = true
-          return registercheck
         }
         else {
           registercheck = false
-          return registercheck
         }
+        return registercheck
       })
     )
   }
@@ -57,10 +72,9 @@ export class AuthenticationService {
   GetActiveUser() {
     let userdata : User = {} as User
     //TOKEN WILL BE APPENDED AUTOMATICALLY IN REQUEST HEADERS
-      return this.http.get( environment.backendurl + '/Authentication/GetUser').pipe(
+      return this.http.get( environment.backendurl + '/Authentication/GetLoggedUser').pipe(
         map( (userdatares : User) => {
-          this.authstatus.next(`${userdatares.username}`)
-          this.isloggedin.next(true)
+          this.authStatus.next(`${userdatares.username}`)
           userdata = userdatares
           return userdata
           })

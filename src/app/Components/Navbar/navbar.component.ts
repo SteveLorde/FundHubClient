@@ -1,11 +1,13 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {AuthenticationService} from "../../Services/Authentication/authentication.service";
+import {NgClass} from "@angular/common";
+import {style} from "@angular/animations";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, NgClass],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
@@ -15,6 +17,7 @@ export class NavbarComponent implements OnInit {
   isLoggedIn: boolean = false
   IsMobileMenuOpen: boolean = false
   @ViewChild('MobileMenu') mobileMenuElement : ElementRef = {} as ElementRef
+  leftCSSProperty : string = '-1000px'
 
   constructor(private router: Router, private authservice : AuthenticationService) {
 
@@ -30,18 +33,13 @@ export class NavbarComponent implements OnInit {
   }
 
   OpenMobileMenu(){
-    if (!this.IsMobileMenuOpen) {
-      this.mobileMenuElement.nativeElement.left = 0
-      this.IsMobileMenuOpen = true
+    if (this.leftCSSProperty === '0') {
+      this.leftCSSProperty = '-1000px'
     }
     else {
-      this.mobileMenuElement.nativeElement.left = -250
-      this.IsMobileMenuOpen = false
+      this.leftCSSProperty = '0'
     }
   }
 
-
-
-
-
+  protected readonly style = style;
 }

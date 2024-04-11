@@ -1,4 +1,4 @@
-import {Component, signal, WritableSignal} from '@angular/core';
+import {Component, OnInit, signal, WritableSignal} from '@angular/core';
 import {Project} from "../../Data/Models/Project";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {User} from "../../Data/Models/User";
@@ -6,6 +6,8 @@ import {ProjectsService} from "../../Services/Projects/projects.service";
 import {NgForOf, NgSwitch, NgSwitchCase} from "@angular/common";
 import {environment} from "../../../environments/environment";
 import {FallbackimageDirective} from "../../Utilities/FallBackImage/fallbackimage.directive";
+import {AuthenticationService} from "../../Services/Authentication/authentication.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-project-view',
@@ -20,7 +22,7 @@ import {FallbackimageDirective} from "../../Utilities/FallBackImage/fallbackimag
   templateUrl: './project-view.component.html',
   styleUrl: './project-view.component.scss'
 })
-export class ProjectViewComponent {
+export class ProjectViewComponent implements OnInit{
   public projectid: string | null = ""
   public project : Project = {
     status: false,
@@ -29,8 +31,9 @@ export class ProjectViewComponent {
     imagesnames: [],
     userId: "",
     category: {id: "", name: ""}, currentfund: 0, description: "", id: "", user: {} as User ,subtitle: "", title: "", totalfundrequired: 0}
+  isUserLoggedIn : boolean = false
 
-  constructor(private router : Router,private route: ActivatedRoute, private projectsService: ProjectsService) {
+  constructor(private router : Router,private route: ActivatedRoute, private projectsService: ProjectsService, private authService : AuthenticationService) {
 
   }
 
@@ -38,10 +41,10 @@ export class ProjectViewComponent {
     this.route.paramMap.subscribe(params => {
       this.projectid = params.get('id')
     })
-    if (this.projectid != null) {
+    this.authService.currentIsLoggedIn.subscribe(res => this.isUserLoggedIn = res)
+    if (this.projectid !== null) {
       this.GetProject(this.projectid)
     }
-    let ownid = "c0c343f3-a9d0-4ae6-93e4-0d1923b04e60"
   }
 
 
@@ -51,8 +54,11 @@ export class ProjectViewComponent {
   }
 
   GoDonate() {
-    if (this.projectid != null) {
+    if (this.projectid !== null && this.isUserLoggedIn) {
       this.router.navigate(['/donation', this.projectid])
+    }
+    else {
+      Swal.fire("Please Login")
     }
   }
 

@@ -2,7 +2,7 @@
 
   <div class="innerdonationtemplate">
     <div>
-      <p class="receiptnumber">generated donation number #{{donationreceiptnumber}}</p>
+      <!----- <p class="receiptnumber">generated donation number #{{donationreceiptnumber}}</p> ----->
       <h2>Donating to Project: {{project().title}} </h2>
     </div>
 
@@ -21,14 +21,13 @@
 
       <h3>Donation Amount</h3>
       <div class="donationamount">
-        <input [(ngModel)]="donationamountview" type="number" formControlName="donationamount" />
+        <input type="number" formControlName="donationamount" />
         <h2 class="donationcount">{{donationamountview}} EGP</h2>
       </div>
 
       <div class="donationarea" >
         <input class="donationbutton" type="submit" />
       </div>
-
     </form>
   </div>
 

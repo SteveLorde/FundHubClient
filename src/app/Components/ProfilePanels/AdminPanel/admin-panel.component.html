@@ -25,8 +25,8 @@
           <th>Status</th>
           <th>Actions</th>
         </tr>
-        @for (project of allProjects; track project.id) {
-          <tr (click)="">
+        @for (project of projects; track project.id) {
+          <tr (click)="SelectProjectToView(project.id)">
             <td>1</td>
             <td>{{project.title}}</td>
             <td>{{project.currentfund}}</td>
@@ -46,8 +46,6 @@
 
     }
     <div>
-
-
       @if(selectedProject().status === false) {
         <div class="flex flex-row gap-4 items-center">
           <button>Accept</button>
@@ -55,6 +53,11 @@
         </div>
       }
     </div>
+
+    <div *ngFor="let number of GenerateRange(totalProjectsPages)">
+      <button (click)="GetProjects(number)">{{number}}</button>
+    </div>
+
   </div>
 
   <div>
@@ -66,6 +69,11 @@
     <div>
 
     </div>
+
+    <div *ngFor="let number of GenerateRange(totalDonationsPages)">
+      <!----<button (click)="GetProjects(number)">{{number}}</button>---->
+    </div>
+
   </div>
 
 </section>

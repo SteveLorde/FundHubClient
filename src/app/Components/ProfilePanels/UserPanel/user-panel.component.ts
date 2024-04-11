@@ -2,12 +2,12 @@ import {Component, OnInit, signal} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
 import {Project} from "../../../Data/Models/Project";
 import {User} from "../../../Data/Models/User";
-import {BackendService} from "../../../Services/Backend/backend.service";
 import {AuthenticationService} from "../../../Services/Authentication/authentication.service";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {FundRequestFormComponent} from "../../FundProjectForm/fund-request-form.component";
 import {Donation} from "../../../Data/Models/Donation";
 import {environment} from "../../../../environments/environment";
+import {ProjectsService} from "../../../Services/Projects/projects.service";
 
 @Component({
   selector: 'app-user-panel',
@@ -44,7 +44,7 @@ export class UserPanelComponent implements OnInit{
   openprojectform : boolean = false
   userdonations : Donation[] = []
 
-  constructor(private auth : AuthenticationService, private backend : BackendService) {
+  constructor(private authService : AuthenticationService, private projectsService : ProjectsService) {
 
   }
 
@@ -76,11 +76,11 @@ export class UserPanelComponent implements OnInit{
   }
 
   RemoveProject() {
-    this.backend.RemoveProject(this.project.id)
+    this.projectsService.RemoveProject(this.project.id)
   }
 
   GetUserData() {
-    this.auth.GetActiveUser().subscribe(userdatares => this.user = userdatares)
+    this.authService.GetActiveUser().subscribe(userdatares => this.user = userdatares)
   }
 
   SetProject() {
