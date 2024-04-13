@@ -8,6 +8,7 @@ export interface Project {
   title : string
   subtitle :string
   description :string
+  categoryId : string
   category : Category
   currentfund : number
   totalfundrequired : number
@@ -18,4 +19,7 @@ export interface Project {
   user : User
   donations : Donation[]
   status : boolean
+  x : string
+  facebook : string
+  instagram : string
 }
