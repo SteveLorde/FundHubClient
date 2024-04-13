@@ -25,6 +25,10 @@ import Swal from "sweetalert2";
 export class ProjectViewComponent implements OnInit{
   public projectid: string | null = ""
   public project : Project = {
+    categoryId: "",
+    facebook: "",
+    instagram: "",
+    x: "",
     status: false,
     donations: [],
     email: "",

@@ -24,6 +24,7 @@ import Swal from "sweetalert2";
 export class DonationPageComponent implements OnInit{
   projectid : string | null = ""
   project = signal<Project>({
+    categoryId: "", facebook: "", instagram: "", x: "",
     status: false,
     currentfund: 0,
      category: {id: "", name: ""},
