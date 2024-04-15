@@ -6,6 +6,8 @@ import {ProjectViewComponent} from "./Pages/ProjectView/project-view.component";
 import {LoginRegisterPageComponent} from "./Pages/LoginRegister/login-register-page.component";
 import {DonationPageComponent} from "./Pages/Donation/donation-page.component";
 import {profileguardGuard} from "./Utilities/ProfileGuard/profileguard.guard";
+import {adminprofileguardGuard} from "./Utilities/AdminProfileGuard/adminprofileguard.guard";
+import {AdminprofileviewPageComponent} from "./Pages/AdminProjectView/adminprofileview-page.component";
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent },
@@ -13,6 +15,7 @@ export const routes: Routes = [
   { path: 'loginregister', component: LoginRegisterPageComponent },
   { path: 'viewproject/:id', component: ProjectViewComponent },
   { path: 'profile', component: ProfilePageComponent, canActivate: [profileguardGuard]  },
+  { path: 'admin/view/:id', component: AdminprofileviewPageComponent, canActivate: [adminprofileguardGuard]  },
   { path: 'donation/:id', component: DonationPageComponent  },
 
 ];

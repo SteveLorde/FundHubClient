@@ -11,9 +11,11 @@ export class AuthenticationService {
 
   isLoggedIn = new BehaviorSubject(false)
   authStatus = new BehaviorSubject("Login/Register")
+  loggedUserType = new BehaviorSubject("user")
   //loggedUserData : User = {} as User
   currentIsLoggedIn = this.isLoggedIn.asObservable()
   currentAuthStatus = this.authStatus.asObservable()
+  currentLoggedUserType = this.loggedUserType.asObservable()
 
 
   constructor(private http : HttpClient) {}
@@ -75,6 +77,7 @@ export class AuthenticationService {
       return this.http.get( environment.backendurl + '/Authentication/GetLoggedUser').pipe(
         map( (userdatares : User) => {
           this.authStatus.next(`${userdatares.username}`)
+          this.loggedUserType.next(userdatares.usertype)
           userdata = userdatares
           return userdata
           })

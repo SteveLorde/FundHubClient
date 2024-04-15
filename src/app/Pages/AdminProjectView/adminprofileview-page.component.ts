@@ -1,10 +1,14 @@
-import {Component, SimpleChanges} from '@angular/core';
+import {Component, Input, SimpleChanges} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import Swal from "sweetalert2";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProjectsService} from "../../Services/Projects/projects.service";
 import {Project} from "../../Data/Models/Project";
+import {BehaviorSubject} from "rxjs";
+import {Category} from "../../Data/Models/Category";
+import {AuthenticationService} from "../../Services/Authentication/authentication.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-adminprofileview-page',
@@ -18,9 +22,17 @@ import {Project} from "../../Data/Models/Project";
 })
 export class AdminprofileviewPageComponent {
 
+  editStatus = new BehaviorSubject(false)
+  categories : Category[] = []
+  userType : string = "user" || "admin"
+  projectId : string = ""
+  editProject : boolean = false
   project : Project = {} as Project
+  imagesToUpload : File[] = []
+  imageUrls : string[] = []
 
-  constructor(private router : Router,private route: ActivatedRoute, private projectsService: ProjectsService) {
+
+  constructor(private router : Router,private route: ActivatedRoute, private projectsService: ProjectsService, private authService : AuthenticationService) {
   }
 
   ngOnInit() {
