@@ -1,49 +1,30 @@
-import {Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges} from '@angular/core';
-import {environment} from "../../../environments/environment";
-import {NgForOf, NgSwitch, NgSwitchCase} from "@angular/common";
-import {Project} from "../../Data/Models/Project";
-import {ProjectsService} from "../../Services/Projects/projects.service";
+import {Component, SimpleChanges} from '@angular/core';
+import {NgForOf} from "@angular/common";
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {BehaviorSubject} from "rxjs";
 import Swal from "sweetalert2";
-import {Category} from "../../Data/Models/Category";
-import {AuthenticationService} from "../../Services/Authentication/authentication.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ProjectsService} from "../../Services/Projects/projects.service";
+import {Project} from "../../Data/Models/Project";
 
 @Component({
-  selector: 'app-projectviewer',
+  selector: 'app-adminprofileview-page',
   standalone: true,
-  imports: [
-    NgForOf,
-    NgSwitchCase,
-    NgSwitch,
-    ReactiveFormsModule
-  ],
-  templateUrl: './projectviewer.component.html',
-  styleUrl: './projectviewer.component.scss'
+    imports: [
+        NgForOf,
+        ReactiveFormsModule
+    ],
+  templateUrl: './adminprofileview-page.component.html',
+  styleUrl: './adminprofileview-page.component.scss'
 })
-export class ProjectviewerComponent implements OnChanges{
+export class AdminprofileviewPageComponent {
 
-  editStatus = new BehaviorSubject(false)
-  categories : Category[] = []
-  @Input() userType : string = "user" || "admin"
-  @Input() projectId : string = ""
-  @Input() editProject : boolean = false
   project : Project = {} as Project
-  imagesToUpload : File[] = []
-  imageUrls : string[] = []
 
-  constructor(private projectsService: ProjectsService, private authService : AuthenticationService) {
+  constructor(private router : Router,private route: ActivatedRoute, private projectsService: ProjectsService) {
   }
 
   ngOnInit() {
     this.GetProject()
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    const projectIdValue = changes['projectId']
-    if (projectIdValue.currentValue != projectIdValue.previousValue) {
-      this.GetProject()
-    }
   }
 
   projectForm = new FormGroup({
@@ -109,8 +90,5 @@ export class ProjectviewerComponent implements OnChanges{
   }
 
   protected readonly environment = environment;
-
-
-
 
 }
