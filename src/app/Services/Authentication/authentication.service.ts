@@ -23,12 +23,18 @@ export class AuthenticationService {
    Login(loginrequest: { password: string, username: string}){
     return this.http.post<string>(environment.backendurl + '/Authentication/Login', loginrequest).pipe(
       map( (tokenres : string) => {
-        localStorage.setItem('usertoken', tokenres)
-        if (localStorage.getItem('usertoken') !== null) {
-          return true
+
+        if (tokenres === "username / password are wrong") {
+          return false
         }
         else {
-          return false
+          localStorage.setItem('usertoken', tokenres)
+          if (localStorage.getItem('usertoken') !== null) {
+            return true
+          }
+          else {
+            return false
+          }
         }
       })
     )

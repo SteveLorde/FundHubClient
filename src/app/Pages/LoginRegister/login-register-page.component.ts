@@ -26,8 +26,8 @@ export class LoginRegisterPageComponent {
   }
 
   loginform = new FormGroup({
-    username: new FormControl('def', {nonNullable: true}),
-    password: new FormControl('def', {nonNullable: true}),
+    username: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    password: new FormControl('', [Validators.required, Validators.minLength(3)]),
   })
 
   registerformm = new FormGroup({
@@ -56,7 +56,10 @@ export class LoginRegisterPageComponent {
           this.router.navigate(["profile"])
         }
         else {
-          Swal.fire("Error Login")
+          Swal.fire({
+            title: "Error Login",
+            text: "Username Or Password wrong"
+          })
         }
       })
   }
@@ -73,7 +76,10 @@ export class LoginRegisterPageComponent {
         this.router.navigate(["profile"])
       }
       else {
-        Swal.fire("Error Registering")
+        Swal.fire({
+          title: "Error Register",
+          text: "Registering an account has failed"
+        })
       }
     })
   }
