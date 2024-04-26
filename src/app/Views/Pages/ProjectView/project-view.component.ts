@@ -56,7 +56,7 @@ export class ProjectViewComponent implements OnInit{
       Swal.fire({
         title: "Donation Successful",
         text: "Thank You For Your Donation\n" +
-          "a mail will be sent when your donation is accepeted by admins"
+          "an e-mail will be sent when your donation is accepted by admins"
       })
     }
   }
