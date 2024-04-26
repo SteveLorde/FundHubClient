@@ -1,14 +1,19 @@
 import { CanActivateFn } from '@angular/router';
+import {inject} from "@angular/core";
+import {AuthenticationService} from "../../Services/Authentication/authentication.service";
 
 export const profileguardGuard: CanActivateFn = (route, state) => {
-  let checkusertokenfound : boolean = false
-  if (typeof localStorage !== 'undefined') {
-    if (localStorage.getItem('usertoken') !== null && localStorage.getItem('usertoken') !== 'undefined' ) {
-      checkusertokenfound = true
+
+  let acceptRoute : boolean = false;
+  const authService = inject(AuthenticationService)
+  let isUserType : string = ""
+  if (authService.currentIsLoggedIn) {
+    authService.currentLoggedUserType.subscribe(res => isUserType = res)
+    if (isUserType === "user") {
+      acceptRoute = true;
+    } else {
+      acceptRoute = false;
     }
   }
-  else {
-    checkusertokenfound = false;
-  }
-  return checkusertokenfound
+  return acceptRoute;
 };

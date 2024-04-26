@@ -1,0 +1,50 @@
+<div class="authpage">
+
+  <div class="formsection">
+    <button class="formselection" (click)="SwitchForm()">Go {{status}}</button>
+    <form class="form" *ngIf="Loginform" [formGroup]="loginform" (ngSubmit)="Login()">
+      <p class="testheader">this is currently for testing, input any credentials to Login</p>
+      <h3 class="username">Username</h3>
+      <input class="forminput"  type="text" placeholder="Enter Username" [formControl]="this.loginform.controls.username" />
+      @if (this.loginform.controls.username.invalid) {
+        @if (this.loginform.controls.username.errors?.['required']) {
+          <p class="text-red-600">username is required to be filled</p>
+        }
+      }
+      <h3 class="password">Password</h3>
+      <input class="forminput" type="text" placeholder="Enter Password" [formControl]="this.loginform.controls.password" />
+      @if (this.loginform.controls.password.invalid) {
+        @if (this.loginform.controls.password.errors?.['required']) {
+          <p class="text-red-600">password is required to be filled</p>
+        }
+      }
+      <input class="submit" type="submit" [disabled]="loginform.invalid" value="Login" />
+    </form>
+
+    <form class="form" *ngIf="Registerform" [formGroup]="registerformm" (ngSubmit)="Register()">
+      <h3 class="username">Username</h3>
+      <input class="forminput" type="text" placeholder="Enter Username" />
+      @if (this.registerformm.controls.username.invalid) {
+        @if (this.registerformm.controls.username.errors?.['required']) {
+          <p class="text-red-600">password is required to be filled</p>
+        }
+      }
+      <h3 class="username">Password</h3>
+      <input class="forminput" type="text" placeholder="Enter Password" />
+      @if (this.registerformm.controls.password.invalid) {
+        @if (this.registerformm.controls.password.errors?.['required']) {
+          <p class="text-red-600">password is required to be filled</p>
+        }
+      }
+      <h3 class="username">Email</h3>
+      <input class="forminput" type="text" placeholder="Enter Email..." />
+      @if (this.registerformm.controls.email.invalid) {
+        @if (this.registerformm.controls.email.errors?.['required']) {
+          <p class="text-red-600">password is required to be filled</p>
+        }
+      }
+      <input class="submit" type="submit" [disabled]="registerformm.invalid" value="Register" />
+    </form>
+  </div>
+
+</div>

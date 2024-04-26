@@ -1,0 +1,65 @@
+<div class="flex flex-col min-h-[1000px] items-center p-4 gap-6 bg-gray-200 rounded-2xl ">
+
+  <div class="flex flex-col gap-2">
+    <button (click)="EditProject()">Edit Project</button>
+    <button (click)="SaveProject()">Save Project</button>
+  </div>
+
+  <!--Images Carousel -->
+  <div>
+    <div class="imagessection" *ngFor="let image of project.imagesnames">
+      <img class="image" src="storage/Projects/{{project.id}}/Images/{{image}}" />
+    </div>
+    @if (userType === "user") {
+
+    } @else if (userType === "admin" && editProject) {
+
+    }
+    <input class="uploadbutton" type="file" (change)="onFileChange($event)" multiple>
+  </div>
+
+  <!--Project View/Form -->
+  <form formGroupName="projectForm">
+    <p>{{project.title}}</p>
+    <input type="text" formControlName="title" />
+    <p>{{project.title}}</p>
+    <input type="text" formControlName="subtitle" />
+    <p>{{project.title}}</p>
+    <input type="text" formControlName="description" />
+    <p>Category</p>
+    <select *ngFor="let category of categories" formControlName="categoryid">
+      <option value="{{category.id}}" >
+        <div class="flex flex-row p-1">
+          <p>{{category.name}}</p>
+          @switch (category.name) {
+            @case ("product") {<img src="../../../../../assets/ProductIcon.png" />}
+            @case ("society"){<img src="../../../../../assets/SocietalProjectIcon.png" />}
+            @case ("environment"){<img src="../../../../../assets/EnvironmentProject.png" />}
+          }
+        </div>
+      </option>
+    </select>
+    <p>{{project.email}}</p>
+    <input type="text" formControlName="email" />
+    <p>{{project.totalfundrequired}}</p>
+    <input type="text" formControlName="totalfundrequired" />
+    <!--SOCIAL MEDIA-->
+    <div>
+      <h3 class="formtitle">Social Media platforms</h3>
+      <p class="formtitle">Facebook</p>
+      <input type="text" formControlName="facebook"/>
+      <p class="formtitle">X</p>
+      <input type="text" formControlName="x"/>
+      <p class="formtitle">instagram</p>
+      <input type="text" formControlName="instagram"/>
+    </div>
+  </form>
+
+  <div class="flex flex-row items-center">
+    <p>{{project.currentfund}}</p>
+    <p>out of</p>
+    <p>{{project.totalfundrequired}}</p>
+    <p>collected</p>
+  </div>
+
+</div>

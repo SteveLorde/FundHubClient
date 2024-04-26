@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
-import {NavbarComponent} from "./Components/Navbar/navbar.component";
-import {FooterbarComponent} from "./Components/Footerbar/footerbar.component";
+import {NavbarComponent} from "./Views/Components/Navbar/navbar.component";
+import {FooterbarComponent} from "./Views/Components/Footerbar/footerbar.component";
 import {AuthenticationService} from "./Services/Authentication/authentication.service";
 
 @Component({

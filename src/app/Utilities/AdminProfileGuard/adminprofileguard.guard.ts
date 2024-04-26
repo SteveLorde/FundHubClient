@@ -4,14 +4,16 @@ import {HttpClient} from "@angular/common/http";
 import {inject} from "@angular/core";
 
 export const adminprofileguardGuard: CanActivateFn = (route, state) => {
-
+  let acceptRoute : boolean = false;
   const authService = inject(AuthenticationService)
   let isAdminType : string = ""
-  authService.currentLoggedUserType.subscribe(res => isAdminType = res)
-  if (isAdminType === "admin") {
-    return true;
+  if (authService.currentIsLoggedIn) {
+    authService.currentLoggedUserType.subscribe(res => isAdminType = res)
+    if (isAdminType === "admin") {
+      acceptRoute = true;
+    } else {
+      acceptRoute = false;
+    }
   }
-  else {
-    return false
-  }
+  return acceptRoute;
 };

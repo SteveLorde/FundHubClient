@@ -9,17 +9,14 @@ import {BehaviorSubject, map} from "rxjs";
 })
 export class DonationsService {
 
-  donateOperationStatus = new BehaviorSubject(false)
-  currentDonationOperationStatus = this.donateOperationStatus.asObservable()
+  //RESORTED TO USING PARAMETER IN URL ROUTING TO NAVIGATE BACK AND POP UP A MODAL WINDOW
+  //donateOperationStatus = new BehaviorSubject(false)
+  //currentDonationOperationStatus = this.donateOperationStatus.asObservable()
 
   constructor(private http : HttpClient) { }
 
   SubmitDonation(donationRequest : Donation) {
-    return this.http.post<boolean>(environment.backendurl + "donations/donate",donationRequest).pipe(
-      map( (result: boolean) => {
-        this.donateOperationStatus.next(true)
-      })
-    )
+    return this.http.post<boolean>(environment.backendurl + "donations/donate",donationRequest)
   }
 
   GetDonations() {
