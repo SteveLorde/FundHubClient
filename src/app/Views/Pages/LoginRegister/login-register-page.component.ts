@@ -33,7 +33,7 @@ export class LoginRegisterPageComponent {
   registerformm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required)
+    email: new FormControl('', [Validators.required, Validators.email]),
   })
 
   SwitchForm() {
@@ -50,6 +50,7 @@ export class LoginRegisterPageComponent {
   }
 
    async Login() {
+    if (this.loginform.valid) {
       let loginrequst = {username: this.loginform.get('username').value, password: this.loginform.get('password').value}
       this.authService.Login(loginrequst).subscribe(res => {
         if (res) {
@@ -62,26 +63,35 @@ export class LoginRegisterPageComponent {
           })
         }
       })
+    }
+    else {
+      this.loginform.markAllAsTouched()
+    }
   }
 
 
   Register() {
-    const registereq = {
-      username: this.registerformm.controls.username.value,
-      password: this.registerformm.controls.password.value,
-      email: this.registerformm.controls.email.value
+    if (this.registerformm.valid) {
+      const registereq = {
+        username: this.registerformm.controls.username.value,
+        password: this.registerformm.controls.password.value,
+        email: this.registerformm.controls.email.value
+      }
+      this.authService.Register(registereq).subscribe(res => {
+        if (res) {
+          this.router.navigate(["profile"])
+        }
+        else {
+          Swal.fire({
+            title: "Error Register",
+            text: "Registering an account has failed"
+          })
+        }
+      })
     }
-    this.authService.Register(registereq).subscribe(res => {
-      if (res) {
-        this.router.navigate(["profile"])
-      }
-      else {
-        Swal.fire({
-          title: "Error Register",
-          text: "Registering an account has failed"
-        })
-      }
-    })
+    else {
+
+    }
   }
 
 }
