@@ -9,7 +9,7 @@ export const profileguardGuard: CanActivateFn = (route, state) => {
   let isUserType : string = ""
   if (authService.currentIsLoggedIn) {
     authService.currentLoggedUserType.subscribe(res => isUserType = res)
-    if (isUserType === "user") {
+    if (isUserType === "user" || "admin") {
       acceptRoute = true;
     } else {
       acceptRoute = false;

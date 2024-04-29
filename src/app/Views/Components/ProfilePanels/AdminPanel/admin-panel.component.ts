@@ -60,6 +60,28 @@ export class AdminPanelComponent {
     }
   }
 
+  RejectDonation(donationId : string) {
+    this.donationsService.DecideDonation(donationId,false).subscribe(res => {
+      if (res) {
+        return;
+      }
+      else {
+        Swal.fire(`Rejecting Donation ${donationId} failed`)
+      }
+    })
+  }
+
+  AcceptDonation(donationId : string) {
+    this.donationsService.DecideDonation(donationId,true).subscribe(res => {
+      if (res) {
+        return;
+      }
+      else {
+        Swal.fire(`Accepting Donation ${donationId} failed`)
+      }
+    })
+  }
+
   GenerateRange(n : number) {
     return Array.from({length : n}, (_, i) => i)
   }

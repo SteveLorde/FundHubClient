@@ -3,15 +3,11 @@
 
 <div class="flex flex-row">
   <li><button>Profile Info</button></li>
-  <li><button>Validate Projects</button></li>
-  <li><button>Validate Donations</button></li>
+  <li><button>Projects List</button></li>
+  <li><button>Donations List</button></li>
 </div>
 
 <section>
-  <div>
-
-  </div>
-
   <div>
     <!----ALL PROJECTS TABLE---->
     <div>
@@ -41,39 +37,37 @@
         }
       </table>
     </div>
-    <!----PROJECT VIEW PANEL----->
-    @if(selectedProject().id === "") {
-
-    }
-    <div>
-      @if(selectedProject().status === false) {
-        <div class="flex flex-row gap-4 items-center">
-          <button>Accept</button>
-          <button>Deny</button>
-        </div>
-      }
-    </div>
-
     <div *ngFor="let number of GenerateRange(totalProjectsPages)">
       <button (click)="GetProjects(number)">{{number}}</button>
     </div>
-
   </div>
-
+  <!----ALL Donations TABLE---->
   <div>
-    <!----ALL Donations TABLE---->
-    <div>
-
-    </div>
-    <!----Donation VIEW PANEL----->
-    <div>
-
-    </div>
-
+    <table>
+      <tr>
+        <td>Amount</td>
+        <td>Payment Type</td>
+        <td>To Project</td>
+        <td>From User</td>
+        <td>Requested On</td>
+        <td>Action</td>
+      </tr>
+      @for (donation of donations; track donation.id) {
+        <tr>
+          <td>{{donation.donationamount}}</td>
+          <td>{{donation.paymenttype}}</td>
+          <td>{{donation.project.title}}</td>
+          <td>{{donation.user.username}}</td>
+          <td>{{donation.user.username}}</td>
+          <td>
+            <button (click)="RejectDonation(donation.id)"></button>
+            <button (click)="AcceptDonation(donation.id)"></button>
+          </td>
+        </tr>
+      }
+    </table>
     <div *ngFor="let number of GenerateRange(totalDonationsPages)">
-      <!----<button (click)="GetProjects(number)">{{number}}</button>---->
+      <button (click)="GetProjects(number)">{{number}}</button>
     </div>
-
   </div>
-
 </section>
