@@ -61,7 +61,7 @@ export class DonationPageComponent implements OnInit{
   }
 
   SubmitDonation() {
-    if (this.isLoggedIn && this.activeUser !== null) {
+    if (this.isLoggedIn && this.activeUser !== null && this.activeUser.usertype == "user") {
       let newDonation : Donation = {
         donationamount: this.donationform.controls.donationamount.value,
         id: "",

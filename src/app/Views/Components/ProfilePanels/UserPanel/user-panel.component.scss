@@ -1,10 +1,13 @@
 .userpanel {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
+  margin: 5px;
+  background-color: white;
   justify-items: center;
   align-content: center;
   justify-content: center;
+  height: 100vh;
   gap: 5px;
 }
 
@@ -18,6 +21,7 @@
 .userinfosection {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: slategray;
   padding: 10px;
 }

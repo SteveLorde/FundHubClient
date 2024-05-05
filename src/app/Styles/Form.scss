@@ -1,0 +1,20 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: #eaeaea;
+}
+
+.formtitle {
+  padding: 10px;
+  border-radius: 20px;
+  border: 0px solid;
+  background-color: #ffffff;
+}
+
+.forminput {
+
+}
+
+.formerror {
+  color: red;
+}

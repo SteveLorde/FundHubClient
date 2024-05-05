@@ -6,7 +6,11 @@
     <a class="link" routerLink="/projects">Projects</a>
   </div>
   <div>
-    <a class="authlink" routerLink="/loginregister">{{authstatus}}</a>
+    @if (!isLoggedIn) {
+      <a class="authlink" routerLink="/loginregister">{{authstatus}}</a>
+    } @else {
+      <a class="authlink" routerLink="/profile">{{authstatus}}</a>
+    }
   </div>
 </nav>
 

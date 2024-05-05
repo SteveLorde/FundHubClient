@@ -2,10 +2,10 @@ import {Project} from "./Project";
 import {User} from "./User";
 
 export interface Donation {
-  id : string | number
-  userid : string | number
+  id : string
+  userid : string
   user : User
-  projectid : string | number
+  projectid : string
   project : Project
   paymenttype : string
   donationamount : number

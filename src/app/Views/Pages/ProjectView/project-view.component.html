@@ -5,7 +5,7 @@
     <img class="selectedimage" src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{project.imagesnames?.[0]}}" />
     <div class="projectgallery">
       <div  *ngFor="let image of project.imagesnames">
-        <img class="galleryimage"  src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{image}}" />
+        <img class="galleryimage"  src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{image}}" appFallbackimage/>
       </div>
     </div>
 
@@ -42,7 +42,7 @@
   <div class="projectownerinfo flex flex-col min-h-[1000px] items-center p-4 gap-6 bg-gray-200 rounded-2xl">
     <!--Project Owner Info -->
     <h3 class="text-black text-center font-bold">About Me</h3>
-    <img class="projectownerimage" src="{{environment.backendurl}}/storage/Users/{{project.user.id}}/Images/{{project.user.profileimage}}" />
+    <img class="projectownerimage" src="{{environment.backendurl}}/storage/Users/{{project.user.id}}/Images/{{project.user.profileimage}}" appFallbackprofilepic/>
     <h2>Project Owner: {{project.user.username}}</h2>
     <h3 class="text-black text-center font-bold">Description</h3>
     <p>{{project.user.description}}</p>

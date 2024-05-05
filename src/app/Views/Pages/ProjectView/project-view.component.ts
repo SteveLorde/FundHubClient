@@ -8,6 +8,7 @@ import {environment} from "../../../../environments/environment";
 import {FallbackimageDirective} from "../../../Utilities/FallBackImage/fallbackimage.directive";
 import {AuthenticationService} from "../../../Services/Authentication/authentication.service";
 import Swal from "sweetalert2";
+import {FallbackprofilepicDirective} from "../../../Utilities/FallBackImage/fallbackprofilepic.directive";
 
 @Component({
   selector: 'app-project-view',
@@ -17,7 +18,8 @@ import Swal from "sweetalert2";
     NgForOf,
     FallbackimageDirective,
     NgSwitchCase,
-    NgSwitch
+    NgSwitch,
+    FallbackprofilepicDirective
   ],
   templateUrl: './project-view.component.html',
   styleUrl: './project-view.component.scss'

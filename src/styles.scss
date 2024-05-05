@@ -2,34 +2,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
+@import "app/Styles/Global";
 
-body {
-  margin: 0;
-  background-color: #f6f6f6;
-}
 
-root {
-  margin: 0;
-}
-
-h1, h2, h3, p {
-  font-family: Dubai, serif;
-}
-
-@keyframes customFade {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes customGlow {
-  0%{
-    box-shadow: 1px 1px 1px yellow;
-  }
-  100% {
-    box-shadow: 10px 10px 10px yellow;
-  }
-}

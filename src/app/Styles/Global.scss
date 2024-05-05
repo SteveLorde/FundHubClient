@@ -1,33 +1,30 @@
-.username, .password {
+.page {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 1px;
+  border-radius: 20px;
+  background-color: white;
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  background-color: #dbdbdb;
+}
+
+root {
+  margin: 0;
+}
+
+h1, h2, h3, p {
   font-family: Dubai, serif;
-  font-size: 20px;
 }
 
 
 
-.formsection {
-  display: flex;
-  flex-direction: column;
-  padding: 50px;
-  background-color: #eaeaea;
-  animation: customFade 0.6s ease-in;
-}
-
-.authpage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 30px;
-  padding: 20px;
-}
-
-.formselection {
-
-}
-
-
-.submit {
-  margin-top: 40px;
+.btn {
+  margin-bottom: 20px;
   border: none;
   background: none;
   border-radius: 20px;
@@ -42,4 +39,13 @@
   font-family: Dubai, serif;
   cursor: pointer;
   text-decoration: none;
+}
+
+.admintable {
+  border: 1px solid grey;
+  margin: 5px;
+}
+
+.admintablerow {
+
 }
