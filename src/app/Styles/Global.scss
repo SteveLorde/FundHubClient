@@ -17,11 +17,9 @@ root {
   margin: 0;
 }
 
-h1, h2, h3, p {
+button, h1, h2, h3, p {
   font-family: Dubai, serif;
 }
-
-
 
 .btn {
   margin-bottom: 20px;
@@ -36,16 +34,7 @@ h1, h2, h3, p {
   color: whitesmoke;
   font-size: 18px;
   font-weight: bolder;
-  font-family: Dubai, serif;
   cursor: pointer;
   text-decoration: none;
 }
 
-.admintable {
-  border: 1px solid grey;
-  margin: 5px;
-}
-
-.admintablerow {
-
-}
