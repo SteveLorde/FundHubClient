@@ -1,5 +1,5 @@
 <!-----Desktop Navbar----->
-<nav class="navbar hidden lg:flex">
+<nav class="navbar">
   <div class="links">
     <img (click)="GoHome()" class="logo" src="assets/logo.png" />
     <a class="link" routerLink="/">Home</a>
@@ -15,7 +15,7 @@
 </nav>
 
 <!-----Mobile Navbar----->
-  <nav class="navbarmobile lg:hidden">
+  <nav class="navbarmobile">
       <img #MobileMenu class="w-[40px] hover:cursor-pointer" src="assets/MobileMenuIcon.svg" (click)="OpenMobileMenu()" alt="mobilenavmenu"/>
       <a class="" routerLink="/">
         <img class="logo" src="assets/logo.png"  alt="homepagelink"/>

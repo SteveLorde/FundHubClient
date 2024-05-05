@@ -1,5 +1,6 @@
 .navbar {
   height: 100px;
+  display: flex;
   flex-direction: row;
   /* background-color: #e8e8e8; */
   align-content: center;
@@ -16,8 +17,9 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  background-color: white;
   gap: 4px;
-  padding: 4px;
+  padding: 8px;
   z-index: 50;
 }
 
@@ -85,5 +87,23 @@
 .authlink:hover {
   background-color: #c9c9c9;
   color: #ffffff;
+}
+
+@media (max-width: 1000px) {
+  .navbar {
+    display: none;
+  }
+  .navbarmobile {
+    display: flex;
+  }
+}
+
+@media (min-width: 1000px) {
+  .navbar {
+    display: flex;
+  }
+  .navbarmobile {
+    display: none;
+  }
 }
 
