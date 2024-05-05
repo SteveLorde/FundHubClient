@@ -1,5 +1,6 @@
 .navbar {
   height: 100px;
+  flex-direction: row;
   /* background-color: #e8e8e8; */
   align-content: center;
   justify-items: center;
@@ -8,6 +9,16 @@
   padding-left: 50px;
   padding-right: 50px;
   background-color: white;
+}
+
+.navbarmobile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 4px;
+  z-index: 50;
 }
 
 .MobileNavbar {

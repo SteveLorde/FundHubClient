@@ -1,6 +1,6 @@
 <div class="page">
 
-  <div class="formsection">
+  <div class="form">
     <button class="btn" (click)="SwitchForm()">Go {{status}}</button>
     <form class="form" *ngIf="Loginform" [formGroup]="loginform" (ngSubmit)="Login()">
       <p class="testheader">this is currently for testing, input "testuser" or "testadmin" + "1234" to Login</p>
