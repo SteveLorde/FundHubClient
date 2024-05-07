@@ -1,11 +1,10 @@
 <div class="page">
 
-  <div class="grid grid-cols-2 grid-rows-2">
+  <div class="flex flex-col items-center md:grid grid-flow-row grid-cols-3 grid-rows-2 gap-2">
 
     <!--Images Carousel-->
     <div class="flex flex-col items-center gap-2">
-
-      <img class="selectedimage" src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{project.imagesnames?.[0]}}" />
+      <img class="max-w-[300px] max-h-[400px]" src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{project.imagesnames?.[0]}}" />
       <div class="projectgallery">
         <div  *ngFor="let image of project.imagesnames">
           <img class="galleryimage"  src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{image}}" appFallbackimage/>
@@ -14,47 +13,69 @@
     </div>
 
     <!--Project Title and Description-->
-    <div class="flex flex-col items-center gap-2">
-      <div>
-        <h1 class="text-2xl font-bold">{{project.title}}</h1>
-        <div class="flex flex-col items-center justify-center gap-4">
-          <h2>Category: {{project.category.name}}</h2>
+    <div class="flex flex-col justify-center gap-4">
+      <div class="flex flex-row items-center justify-center gap-8">
+        <h1 class="text-4xl font-bold">{{project.title}}</h1>
+        <div class="flex flex-col items-center justify-center">
           <div [ngSwitch]="project.category.name">
             <img class="w-[20px] h-[20px]" *ngSwitchCase=" 'product' "  src="assets/ProductIcon.png"/>
             <img class="w-[20px] h-[20px]"  *ngSwitchCase=" 'society' "  src="assets/SocietalProjectIcon.png"/>
             <img class="w-[20px] h-[20px]"  *ngSwitchCase=" 'environment' "  src="assets/EnvironmentProject.png"/>
           </div>
+          <h2>{{project.category.name}}</h2>
         </div>
       </div>
-      <p class="min-h-[250px]">{{project.description}}</p>
+      <p class="min-h-[100px] font-medium">{{project.description}}</p>
+
+      <div class="flex flex-col">
+        <h3>social medias</h3>
+        <div class="flex flex-row items-center gap-4">
+          @if (project.facebook !== "" || null) {
+            <a [href]="project.facebook" >
+              <img src=""  alt="facebook"/>
+            </a>
+          }
+          @if (project.x !== "" || null) {
+            <a [href]="project.x" >
+              <img src=""  alt="X"/>
+            </a>
+          }
+          @if (project.instagram !== "" || null) {
+            <a [href]="project.instagram" >
+              <img src=""  alt="instagram"/>
+            </a>
+          }
+        </div>
+      </div>
     </div>
 
     <!---Funding and Donate Button--->
-    <div>
+    <div class="flex flex-col items-center gap-4 col-start-2 row-start-2">
       <div class="flex flex-row items-center gap-3">
         @if (project.currentfund <= project.totalfundrequired) {
-          <p class="text-red-600 font-bold">{{project.currentfund}}</p>
+          <p class="text-red-600 font-bold">{{project.currentfund | currency: "EGP"}}</p>
         } @else {
-          <p class="text-green-500 font-bold">{{project.currentfund}}</p>
+          <p class="text-green-500 font-bold">{{project.currentfund | currency: "EGP"}}</p>
         }
         <p>out of</p>
-        <p class="font-bold">{{project.totalfundrequired}}</p>
+        <p class="font-bold">{{project.totalfundrequired | currency: "EGP"}}</p>
         <p>collected</p>
       </div>
       <a class="donatebutton" (click)="GoDonate()" routerLink="/donate">Donate</a>
     </div>
 
+    <div class="flex flex-col items-center col-start-3 row-start-1 col-span-1 row-span-2">
+      <!--Project Owner Info -->
+      <h3 class="">About Me</h3>
+      <img class="projectownerimage" src="{{environment.backendurl}}/storage/Users/{{project.user.id}}/Images/{{project.user.profileimage}}" appFallbackprofilepic/>
+      <h2>Project Owner: {{project.user.username}}</h2>
+      <h3 class="">Description</h3>
+      <p>{{project.user.description}}</p>
+      <h3 class="">contact info</h3>
+      <p>Phone Number: {{project.user.phonenumber}}</p>
+    </div>
   </div>
 
-  <div class="projectownerinfo">
-    <!--Project Owner Info -->
-    <h3 class="">About Me</h3>
-    <img class="projectownerimage" src="{{environment.backendurl}}/storage/Users/{{project.user.id}}/Images/{{project.user.profileimage}}" appFallbackprofilepic/>
-    <h2>Project Owner: {{project.user.username}}</h2>
-    <h3 class="">Description</h3>
-    <p>{{project.user.description}}</p>
-    <h3 class="">contact info</h3>
-    <p>Phone Number: {{project.user.phonenumber}}</p>
-  </div>
+
 
 </div>

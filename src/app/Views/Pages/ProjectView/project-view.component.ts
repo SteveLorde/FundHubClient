@@ -3,7 +3,7 @@ import {Project} from "../../../Data/Models/Project";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {User} from "../../../Data/Models/User";
 import {ProjectsService} from "../../../Services/Projects/projects.service";
-import {NgForOf, NgSwitch, NgSwitchCase} from "@angular/common";
+import {CurrencyPipe, NgForOf, NgSwitch, NgSwitchCase} from "@angular/common";
 import {environment} from "../../../../environments/environment";
 import {FallbackimageDirective} from "../../../Utilities/FallBackImage/fallbackimage.directive";
 import {AuthenticationService} from "../../../Services/Authentication/authentication.service";
@@ -19,7 +19,8 @@ import {FallbackprofilepicDirective} from "../../../Utilities/FallBackImage/fall
     FallbackimageDirective,
     NgSwitchCase,
     NgSwitch,
-    FallbackprofilepicDirective
+    FallbackprofilepicDirective,
+    CurrencyPipe
   ],
   templateUrl: './project-view.component.html',
   styleUrl: './project-view.component.scss'
