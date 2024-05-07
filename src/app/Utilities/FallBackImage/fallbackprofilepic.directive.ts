@@ -5,7 +5,7 @@ import {Directive, HostListener} from '@angular/core';
   standalone: true
 })
 export class FallbackprofilepicDirective {
-  fallbackimgsrc = "/assets/nulluserpic.png"
+  fallbackimgsrc = "/assets/nulluserpic.svg"
 
   constructor() { }
 
