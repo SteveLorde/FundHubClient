@@ -39,14 +39,14 @@
     <a class="donatebutton" (click)="GoDonate()" routerLink="/donate">Donate</a>
   </div>
 
-  <div class="projectownerinfo flex flex-col min-h-[1000px] items-center p-4 gap-6 bg-gray-200 rounded-2xl">
+  <div class="projectownerinfo">
     <!--Project Owner Info -->
-    <h3 class="text-black text-center font-bold">About Me</h3>
+    <h3 class="">About Me</h3>
     <img class="projectownerimage" src="{{environment.backendurl}}/storage/Users/{{project.user.id}}/Images/{{project.user.profileimage}}" appFallbackprofilepic/>
     <h2>Project Owner: {{project.user.username}}</h2>
-    <h3 class="text-black text-center font-bold">Description</h3>
+    <h3 class="">Description</h3>
     <p>{{project.user.description}}</p>
-    <h3 class="text-black text-center font-bold">contact info</h3>
+    <h3 class="">contact info</h3>
     <p>Phone Number: {{project.user.phonenumber}}</p>
   </div>
 

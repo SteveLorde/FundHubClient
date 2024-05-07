@@ -8,16 +8,18 @@ import {DonationPageComponent} from "./Views/Pages/Donation/donation-page.compon
 import {profileguardGuard} from "./Utilities/ProfileGuard/profileguard.guard";
 import {adminprofileguardGuard} from "./Utilities/AdminProfileGuard/adminprofileguard.guard";
 import {AdminprofileviewPageComponent} from "./Views/Components/ProfilePanels/AdminPanel/AdminProjectView/adminprofileview-page.component";
+import {UnderconstructionComponent} from "./Views/Pages/UnderConstruction/underconstruction.component";
+import {underconstructionGuard} from "./Utilities/UnderConstructionRouteGuard/underconstruction.guard";
 
 export const routes: Routes = [
   { path: '', component: HomePageComponent },
+  {path: "undercon", component: UnderconstructionComponent},
   { path: 'projects', component: ProjectsPageComponent },
   { path: 'loginregister', component: LoginRegisterPageComponent },
   //RE-ROUTE AFTER SUCCESSFUL DONATION
   { path: 'viewproject/:id/successfuldonation', component: ProjectViewComponent },
   { path: 'viewproject/:id', component: ProjectViewComponent },
-  { path: 'profile', component: ProfilePageComponent, canActivate: [profileguardGuard]  },
-  { path: 'admin/view/:id', component: AdminprofileviewPageComponent, canActivate: [adminprofileguardGuard]  },
-  { path: 'donation/:id', component: DonationPageComponent  },
-
+  { path: 'profile', component: ProfilePageComponent, canActivate: [underconstructionGuard]  },
+  { path: 'admin/view/:id', component: AdminprofileviewPageComponent, canActivate: [underconstructionGuard]  },
+  { path: 'donation/:id', component: DonationPageComponent, canActivate: [profileguardGuard]  },
 ];

@@ -50,6 +50,7 @@ export class LoginRegisterPageComponent {
   }
 
    async Login() {
+     this.loginform.markAllAsTouched()
     if (this.loginform.valid) {
       let loginrequst = {username: this.loginform.get('username').value, password: this.loginform.get('password').value}
       this.authService.Login(loginrequst).subscribe(res => {
@@ -57,6 +58,7 @@ export class LoginRegisterPageComponent {
           this.router.navigate(["profile"])
         }
         else {
+
           Swal.fire({
             title: "Error Login",
             text: "Username Or Password wrong"
@@ -71,6 +73,7 @@ export class LoginRegisterPageComponent {
 
 
   Register() {
+    this.registerformm.markAllAsTouched()
     if (this.registerformm.valid) {
       const registereq = {
         username: this.registerformm.controls.username.value,

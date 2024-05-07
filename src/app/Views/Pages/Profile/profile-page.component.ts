@@ -47,6 +47,10 @@ export class ProfilePageComponent implements OnInit{
         this.showadminpanel = true
         this.showuserpanel = false
       }
+      else {
+        this.showadminpanel = false
+        this.showuserpanel = false
+      }
     })
 
   }

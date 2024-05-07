@@ -4,23 +4,18 @@ import {AuthenticationService} from "../../Services/Authentication/authenticatio
 
 export const profileguardGuard: CanActivateFn = (route, state) => {
   let acceptRoute : boolean = false;
+  let isUserLoggedIn : boolean = false;
   const authService = inject(AuthenticationService)
   const router = inject(Router)
 
-  let isUserType : string = ""
-  if (authService.currentIsLoggedIn) {
-    authService.currentLoggedUserType.subscribe(res => isUserType = res)
-    if (isUserType === "user" || "admin") {
-      acceptRoute = true
-    } else {
-      acceptRoute = false
+  authService.currentIsLoggedIn.subscribe(res => {
+    if (!res) {
+      router.navigate(["loginregister"])
+      isUserLoggedIn = false
     }
-  }
-  if (acceptRoute) {
-    return true
-  }
-  else {
-    router.navigate(["/loginregister"])
-    return false
-  }
+    else {
+      isUserLoggedIn = true
+    }
+  })
+  return isUserLoggedIn
 };

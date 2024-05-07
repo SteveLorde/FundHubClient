@@ -1,4 +1,4 @@
-@import "src/app/Styles/Global";
+@import "../../../Styles/Global";
 
 
 .navbar {
@@ -47,9 +47,11 @@
 }
 
 .logo {
-  height: 20px;
+  height: 35px;
   margin-right: 20px;
   cursor: pointer;
+  fill: $secondary-backgroundcolor;
+  stroke: $secondary-backgroundcolor;
 }
 
 .logo:hover {

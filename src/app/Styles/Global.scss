@@ -1,4 +1,7 @@
-$secondary-backgroundcolor: #008000;
+$secondary-backgroundcolor: #00BE55FF;
+$primary-textcolor: #ffff;
+$secondary-textcolor: #00BE55FF;
+$dim-backgroundcolor: #D9D9D9FF;
 
 
 .page {
@@ -14,7 +17,7 @@ $secondary-backgroundcolor: #008000;
 
 body {
   margin: 0;
-  background-color: #dbdbdb;
+  background-color: $dim-backgroundcolor;
 }
 
 root {
@@ -35,7 +38,7 @@ button, h1, h2, h3, p {
   padding-right: 60px;
   padding-top: 5px;
   padding-bottom: 5px;
-  background-color: #00be55;
+  background-color: $secondary-backgroundcolor;
   color: whitesmoke;
   font-size: 18px;
   font-weight: bolder;
