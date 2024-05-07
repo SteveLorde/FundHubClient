@@ -8,6 +8,7 @@ import {FundRequestFormComponent} from "../../FundProjectForm/fund-request-form.
 import {Donation} from "../../../../Data/Models/Donation";
 import {environment} from "../../../../../environments/environment";
 import {ProjectsService} from "../../../../Services/Projects/projects.service";
+import {FallbackprofilepicDirective} from "../../../../Utilities/FallBackImage/fallbackprofilepic.directive";
 
 @Component({
   selector: 'app-user-panel',
@@ -16,7 +17,8 @@ import {ProjectsService} from "../../../../Services/Projects/projects.service";
     NgIf,
     ReactiveFormsModule,
     NgForOf,
-    FundRequestFormComponent
+    FundRequestFormComponent,
+    FallbackprofilepicDirective
   ],
   templateUrl: './user-panel.component.html',
   styleUrl: './user-panel.component.scss'

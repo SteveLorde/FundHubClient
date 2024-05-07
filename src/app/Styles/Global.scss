@@ -1,3 +1,6 @@
+$secondary-backgroundcolor: #008000;
+
+
 .page {
   display: flex;
   flex-direction: column;
@@ -46,5 +49,11 @@ button, h1, h2, h3, p {
 
 .text2 {
 
+}
+
+.errtext {
+  font-size: 1em;
+  color: red;
+  font-weight: 500;
 }
 

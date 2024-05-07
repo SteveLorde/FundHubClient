@@ -24,6 +24,14 @@
   align-items: center;
   background-color: slategray;
   padding: 10px;
+
+  .namepicblock {
+    display: flex;
+    flex-direction: row;
+  }
+
+
+
 }
 
 .userinfo {

@@ -1,7 +1,7 @@
 <!-----Desktop Navbar----->
 <nav class="navbar">
   <div class="links">
-    <img (click)="GoHome()" class="logo" src="assets/logo.png" />
+    <img (click)="GoHome()" class="logo" src="assets/logo.svg" />
     <a class="link" routerLink="/">Home</a>
     <a class="link" routerLink="/projects">Projects</a>
   </div>
@@ -18,7 +18,7 @@
   <nav class="navbarmobile">
       <img #MobileMenu class="w-[40px] hover:cursor-pointer" src="assets/MobileMenuIcon.svg" (click)="OpenMobileMenu()" alt="mobilenavmenu"/>
       <a class="" routerLink="/">
-        <img class="logo" src="assets/logo.png"  alt="homepagelink"/>
+        <img class="logo" src="assets/logo.svg"  alt="homepagelink"/>
       </a>
       <a class="bg-green-500 rounded-[500px]" routerLink="/loginregister">
         @if (isLoggedIn) {
@@ -30,7 +30,7 @@
   </nav>
 
 
-  <nav #MobileMenu [style.left]="leftCSSProperty" class="mobilemenu lg:hidden absolute w-[200px] z-50 h-lvh bg-green-500">
+  <nav #MobileMenu [style.left]="leftCSSProperty" class="mobilemenu lg:hidden absolute w-[200px] z-50 h-lvh">
     <ul class="flex flex-col items-center gap-6">
       <li><a class="mb-2 p-2 border-b-2 border-gray-300 text-white font-semibold" routerLink="/">Home</a></li>
       <li><a class="mb-2 p-2 border-b-2 text-white font-semibold" routerLink="/projects">Projects</a></li>

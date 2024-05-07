@@ -1,3 +1,6 @@
+@import "src/app/Styles/Global";
+
+
 .navbar {
   height: 100px;
   display: flex;
@@ -30,6 +33,7 @@
 
 .mobilemenu {
   left: -1000px;
+  background-color: $secondary-backgroundcolor;
   transition: left 0.4s ease-in-out;
 }
 
