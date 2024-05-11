@@ -1,13 +1,13 @@
 <div class="page">
 
-  <div class="flex flex-col items-center md:grid grid-flow-row grid-cols-3 grid-rows-2 gap-2">
+  <div class="flex flex-col items-center lg:grid grid-flow-row grid-cols-3 grid-rows-2 gap-3">
 
     <!--Images Carousel-->
     <div class="flex flex-col items-center gap-2">
-      <img class="max-w-[300px] max-h-[400px]" src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{project.imagesnames?.[0]}}" />
+      <img class="max-w-[300px] max-h-[400px]" #imagePreview src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{imageToView}}" appFallbackimage />
       <div class="projectgallery">
         <div  *ngFor="let image of project.imagesnames">
-          <img class="galleryimage"  src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{image}}" appFallbackimage/>
+          <img class="galleryimage" (click)="ChangeSelectedImage(image)"  src="{{environment.backendurl}}/storage/Projects/{{project.id}}/Images/{{image}}" appFallbackimage/>
         </div>
       </div>
     </div>

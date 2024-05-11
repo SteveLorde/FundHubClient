@@ -20,6 +20,7 @@ export class AppComponent implements  OnInit{
   }
 
   ngOnInit() {
+    /*
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         if (typeof localStorage !== 'undefined') {
@@ -27,10 +28,11 @@ export class AppComponent implements  OnInit{
         }
       }
     })
+     */
   }
 
   AutoCheckLogin() {
-    this.authService.currentIsLoggedIn.subscribe(res => console.log(res))
+    this.authService.currentIsLoggedIn.subscribe(res => console.log("is logged in: " + res))
     this.authService.AutoCheckLogin().subscribe()
   }
 }

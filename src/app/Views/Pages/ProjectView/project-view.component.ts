@@ -1,4 +1,4 @@
-import {Component, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, ElementRef, OnInit, signal, ViewChild, WritableSignal} from '@angular/core';
 import {Project} from "../../../Data/Models/Project";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {User} from "../../../Data/Models/User";
@@ -40,6 +40,9 @@ export class ProjectViewComponent implements OnInit{
     category: {id: "", name: ""}, currentfund: 0, description: "", id: "", user: {} as User ,subtitle: "", title: "", totalfundrequired: 0}
   isUserLoggedIn : boolean = false
   isSuccessfulDonation : boolean = false
+  @ViewChild("imagePreview") imagePreview : ElementRef
+  //THERE'S A BUG RELATED TO INTERPOLATING THIS VARIABLE BEFORE GETTING PROJECT DATA
+  imageToView : string = ""
 
   constructor(private router : Router,private route: ActivatedRoute, private projectsService: ProjectsService, private authService : AuthenticationService) {
 
@@ -64,10 +67,16 @@ export class ProjectViewComponent implements OnInit{
     }
   }
 
+  ChangeSelectedImage(imageName : string) {
+    this.imageToView = imageName
+  }
 
 
   GetProject(projectid : string) {
-    this.projectsService.GetProject(projectid).subscribe( (projectres : Project) => this.project = projectres)
+    this.projectsService.GetProject(projectid).subscribe( (projectres : Project) => {
+      this.project = projectres
+      this.imageToView = projectres.imagesnames[0]
+    })
   }
 
   GoDonate() {
